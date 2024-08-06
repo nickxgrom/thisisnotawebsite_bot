@@ -19,6 +19,8 @@ app.post('/', async (req, res) => {
     const chatId = req.body.message.from.id
 
     await sendMessage(chatId, req.body?.message?.text?.trim() === 'ping' ? 'pong' : 'something went wrong')
+
+    res.sendStatus(200)
 })
 
 app.listen(PORT, () => {
