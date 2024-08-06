@@ -17,7 +17,8 @@ async function sendMessage(chatId, message) {
 
 app.post('/', async (req, res) => {
     const chatId = req.body.message.from.id
-
+    console.log('just test log')
+    console.log(chatId)
     await sendMessage(chatId, req.body?.message?.text?.trim() === 'ping' ? 'pong' : 'something went wrong')
 
     res.sendStatus(200)
