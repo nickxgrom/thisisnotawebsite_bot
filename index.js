@@ -1,9 +1,12 @@
 require('dotenv').config()
 
-const app = require('express')(),
+const express = require('express'),
+    app = express(),
     PORT = process.env.PORT || 8080,
     BOT_TOKEN = `bot${process.env.BOT_TOKEN}`,
     baseUrl = 'https://api.telegram.org'
+
+app.use(express.json())
 
 async function sendMessage(chatId, message) {
     if (!chatId) return
@@ -19,7 +22,7 @@ async function sendMessage(chatId, message) {
 
 app.post('/', async (req, res) => {
     const chatId = req.body?.message?.from?.id
-    console.log('just test log')
+    console.log(req.body)
     console.log(chatId)
     await sendMessage(chatId, req.body?.message?.text?.trim() === 'ping' ? 'pong' : 'something went wrong')
 
