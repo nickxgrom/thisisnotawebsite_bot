@@ -6,6 +6,8 @@ const app = require('express')(),
     baseUrl = 'https://api.telegram.org'
 
 async function sendMessage(chatId, message) {
+    if (!chatId) return
+
     await fetch(`${baseUrl}/${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         body: JSON.stringify({
@@ -16,7 +18,7 @@ async function sendMessage(chatId, message) {
 }
 
 app.post('/', async (req, res) => {
-    const chatId = req.body.message.from.id
+    const chatId = req.body?.message?.from?.id
     console.log('just test log')
     console.log(chatId)
     await sendMessage(chatId, req.body?.message?.text?.trim() === 'ping' ? 'pong' : 'something went wrong')
