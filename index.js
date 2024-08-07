@@ -11,13 +11,18 @@ app.use(express.json())
 async function sendMessage(chatId, message) {
     if (!chatId) return
 
-    await fetch(`${baseUrl}/${BOT_TOKEN}/sendMessage`, {
+    const res = await fetch(`${baseUrl}/${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             chatId,
             text: message
         })
     })
+
+    console.log(res)
 }
 
 app.post('/', async (req, res) => {
