@@ -11,7 +11,7 @@ app.use(express.json())
 async function sendMessage(chatId, message) {
     if (!chatId) return
 
-    const res = await fetch(`${baseUrl}/${BOT_TOKEN}/sendMessage`, {
+    const res = await fetch(`${baseUrl}/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
