@@ -5,7 +5,7 @@ const express = require('express'),
     PORT = process.env.PORT || 8080,
     BOT_TOKEN = `bot${process.env.BOT_TOKEN}`,
     baseUrl = 'https://api.telegram.org',
-    SCHEDULE_INTERVAL = process.env.SCHEDULE_INTERVAL || 60000
+    SCHEDULE_INTERVAL = +process.env.SCHEDULE_INTERVAL || 60000
 
 const activeChats = []
 
